@@ -1,0 +1,22 @@
+{
+  "name": "rbxbot",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "check": "ultracite check",
+    "fix": "ultracite fix",
+    "prepare": "lefthook install",
+    "prepare-chromium": "bunx playwright install chromium"
+  },
+  "dependencies": {
+    "hono": "^4.11.9",
+    "ioredis": "^5.9.3",
+    "playwright": "^1.58.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.15",
+    "@types/bun": "latest",
+    "lefthook": "^2.1.1",
+    "ultracite": "7.2.1"
+  }
+}

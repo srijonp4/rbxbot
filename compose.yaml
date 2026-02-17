@@ -1,0 +1,22 @@
+services:
+  dragonflydb:
+    image: ghcr.io/dragonflydb/dragonfly:v1.36.0
+    container_name: dragonflydb
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./container-data/redis:/data # comment in prod
+      # - dragonfly-data:/data
+    command: dragonfly --requirepass ${DRAGONFLYDB_PASSWORD} --maxmemory=512mb --proactor_threads=2
+    ulimits:
+      memlock: -1
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${DRAGONFLYDB_PASSWORD}", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+
+# volumes:
+#   dragonfly-data: # un-comment in prod
