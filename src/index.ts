@@ -1,11 +1,11 @@
-import { Hono } from "hono";
-import { logger } from "hono/logger";
+import { serve } from "bun";
+import redditBot from "./bots/reddit";
+import server from "./http-server/server";
 
-const app = new Hono();
-
-app.use(logger());
-app.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
-
-export default app;
+async function main() {
+  serve({ port: 3000, fetch: server.fetch });
+  const tasks: Promise<void>[] = [];
+  tasks.push(redditBot());
+  await Promise.all(tasks);
+}
+await main();
