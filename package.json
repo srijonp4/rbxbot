@@ -8,6 +8,7 @@
     "prepare-chromium": "bunx playwright install chromium"
   },
   "dependencies": {
+    "@std/toml": "npm:@jsr/std__toml",
     "@valkey/valkey-glide": "^2.2.7",
     "hono": "^4.11.9",
     "playwright": "^1.58.2",
