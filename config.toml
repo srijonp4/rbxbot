@@ -1,0 +1,29 @@
+[global]
+playwright_timeout = 10
+http_port = 8000
+cookie_file = "cookie.json"
+
+[redis]
+host = "localhost"
+port = 6379
+
+[reddit]
+enabled = true
+delay = 300 # delay between checks in seconds
+# Reddit subreddit and flairs
+subreddit_list = ["cats"]
+flair_blocklist = ["Mourning/Loss", "Advice", "Adoption", "Medical Questions", "Update"]
+# users blacklist separated by comma
+users_blacklist = ["bot_account"]
+
+[bluesky]
+enabled = true
+delay = 300 # delay between checks in seconds
+hashtag_list = ["cats", "catsofbluesky", "r/cats", "catsareawesome"]
+
+[twitter]
+# Add hashtag to the tweet
+hashtag_list = ["unixporn", "linux", "screenshot"]
+
+# Add footer text
+footer_text = "Buy me a coffee ☕️: https://www.buymeacoffee.com/bot_unixporn"

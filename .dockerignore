@@ -1,0 +1,10 @@
+node_modules
+container-data
+.git
+.env
+*.md
+biome.jsonc
+lefthook.yml
+.github
+.claude
+bluesky-session.json

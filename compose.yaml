@@ -1,12 +1,24 @@
 services:
+  bot:
+    build: .
+    container_name: rbxbot
+    env_file: .env
+    environment:
+      - REDIS_HOST=dragonflydb
+    ports:
+      - "8000:8000"
+    depends_on:
+      dragonflydb:
+        condition: service_healthy
+    restart: unless-stopped
+
   dragonflydb:
     image: ghcr.io/dragonflydb/dragonfly:v1.36.0
     container_name: dragonflydb
     ports:
       - "6379:6379"
     volumes:
-      - ./container-data/redis:/data # comment in prod
-      # - dragonfly-data:/data
+      - dragonfly-data:/data
     command: dragonfly --requirepass ${DRAGONFLYDB_PASSWORD} --maxmemory=512mb --proactor_threads=2
     ulimits:
       memlock: -1
@@ -18,5 +30,5 @@ services:
       start_period: 5s
     restart: unless-stopped
 
-# volumes:
-#   dragonfly-data: # un-comment in prod
+volumes:
+  dragonfly-data:

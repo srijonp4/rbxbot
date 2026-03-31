@@ -1,11 +1,6 @@
 import { serve } from "bun";
-import redditBot from "./bots/reddit";
+import { config } from "./config";
 import server from "./http-server/server";
 
-async function main() {
-  serve({ port: 3000, fetch: server.fetch });
-  const tasks: Promise<void>[] = [];
-  tasks.push(redditBot());
-  await Promise.all(tasks);
-}
-await main();
+serve({ port: config.global.http_port, fetch: server.fetch });
+console.log(`Server running on port ${config.global.http_port}`);
